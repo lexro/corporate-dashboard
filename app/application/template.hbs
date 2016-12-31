@@ -1,1 +1,19 @@
-hello
+<header>
+  <nav class="nav-bar">
+    <ul class="nav-bar__list">
+      {{#link-to 'employees'}}
+        <li class="nav-bar__list-item">Employee Geospatial</li>
+      {{/link-to}}
+      {{#link-to 'metrics'}}
+        <li class="nav-bar__list-item">Key Metrics</li>
+      {{/link-to}}
+      {{#link-to 'data'}}
+        <li class="nav-bar__list-item">Data</li>
+      {{/link-to}}
+    </ul>
+  </nav>
+</header>
+
+<section class="body-content">
+  {{outlet}}
+</section>

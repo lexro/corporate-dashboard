@@ -1,1 +1,32 @@
+@import "normalize";
+$primaryLightColor: white;
 
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-bar {
+  align-items: center;
+  background: black;
+  color: $primaryLightColor;
+  display: flex;
+  font-size: 18px;
+  height: 80px;
+
+  &__list {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+      color: $primaryLightColor;
+      text-decoration: none;
+    }
+  }
+
+  &__list-item {
+    padding: 8px 16px;
+  }
+}
