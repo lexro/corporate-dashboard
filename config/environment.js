@@ -23,7 +23,10 @@ module.exports = function(environment) {
     },
     googleFonts: [
       'Roboto:400'
-    ]
+    ],
+    googleMap: {
+      libraries: ['drawing']
+    }
   };
 
   if (environment === 'development') {

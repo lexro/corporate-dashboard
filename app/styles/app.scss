@@ -1,15 +1,21 @@
 @import "normalize";
-$primaryLightColor: white;
-
+$white: white;
+$black: #00171F;
+$primaryColor: #007EA7;
+$fontFamily: 'Roboto', sans-serif;
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
+}
+
+.ember-cli-g-map {
+    height: 300px;
 }
 
 .nav-bar {
   align-items: center;
-  background: black;
-  color: $primaryLightColor;
+  background: $black;
+  color: $white;
   display: flex;
   font-size: 18px;
   height: 80px;
@@ -21,7 +27,7 @@ $primaryLightColor: white;
     padding: 0;
 
     a {
-      color: $primaryLightColor;
+      color: $white;
       text-decoration: none;
     }
   }
@@ -29,4 +35,40 @@ $primaryLightColor: white;
   &__list-item {
     padding: 8px 16px;
   }
+}
+
+.arrow_box {
+  position: relative;
+  background: $primaryColor;
+  opacity: .8;
+
+  padding: 8px;
+  color: $white;
+  font-family: $fontFamily;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.arrow_box:after, .arrow_box:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+$arrowSize: 8px;
+.arrow_box:after {
+  border-top-color: $primaryColor;
+  border-width: $arrowSize;
+  margin-left: -$arrowSize;
+}
+
+.arrow_box:before {
+  border-top-color: $primaryColor;
+  border-width: $arrowSize;
+  margin-left: -$arrowSize;
 }
