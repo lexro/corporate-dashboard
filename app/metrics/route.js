@@ -47,8 +47,8 @@ export default Ember.Route.extend({
 
     controller.setProperties({
       numIssues: model.numIssues,
-      barData: barData,
-      lineData: lineData
+      barData: Ember.A(barData),
+      lineData: Ember.A(lineData)
     });
   }
 });
