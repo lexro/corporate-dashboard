@@ -1,12 +1,16 @@
-<h2>Employees</h2>
-{{g-maps
-  name="employee-map"
-  lat=lat
-  lng=lng
-  zoom=zoom
-  showMapTypeControl=false
-  showScaleControl=false
-  overlays=overlays
-  }}
+<div class="dashboard-container">
+  <h2 class="dashboard-title"># of Employees/Location</h2>
+  {{g-maps
+    name="my-map"
+    lat=lat
+    lng=lng
+    zoom=zoom
+    showMapTypeControl=false
+    showScaleControl=false
+    disableDefaultUI=true
+    overlays=overlays
+    styles=styles
+    }}
 
-{{outlet}}
+  {{outlet}}
+</div>

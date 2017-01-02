@@ -1,7 +1,8 @@
 @import "normalize";
 $white: white;
 $black: #00171F;
-$primaryColor: #007EA7;
+$grey: #555;
+$primaryColor: #007EA7; //003459 //00A8E8
 $fontFamily: 'Roboto', sans-serif;
 
 * {
@@ -9,7 +10,15 @@ $fontFamily: 'Roboto', sans-serif;
 }
 
 .ember-cli-g-map {
-    height: 300px;
+  height: 300px;
+}
+
+.dashboard-container {
+  text-align: center;
+}
+
+.dashboard-title {
+  color: $grey;
 }
 
 .nav-bar {
