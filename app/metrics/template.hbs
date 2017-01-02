@@ -2,13 +2,23 @@
   <h2 class="dashboard-title">Key Metrics</h2>
 
   <div>
-    Number of Issues: {{numIssues}}
+    <span class="issue-number">{{numIssues}}</span> open issues
   </div>
 
+  <div class="chart-header">
+    Issues Over Time
+  </div>
   {{time-series-chart
-    barData=barData}}
+    barData=barData
+    class="metric-chart"}}
+
+  <div class="chart-header">
+    Paying Customers Over Time
+  </div>
   {{time-series-chart
-    lineData=lineData}}
+    lineData=lineData
+    class="metric-chart"
+    }}
   {{outlet}}
 </div>
 
