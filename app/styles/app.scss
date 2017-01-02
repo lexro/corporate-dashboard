@@ -4,6 +4,7 @@ $black: #00171F;
 $grey: #555;
 $primaryColor: #007EA7; //003459 //00A8E8
 $fontFamily: 'Roboto', sans-serif;
+$border-color: #DADADA;
 
 * {
   font-family: $fontFamily;
@@ -81,3 +82,70 @@ $arrowSize: 8px;
   border-width: $arrowSize;
   margin-left: -$arrowSize;
 }
+
+// table styles borrowed from https://github.com/offirgolan/ember-light-table/blob/master/tests/dummy/app/styles/table.less
+.ember-light-table {
+  width: 95%;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+  thead .lt-column {
+    border-bottom: 1px solid $border-color;
+  }
+
+  .lt-column {
+    font-size: 14px;
+    padding: 10px;
+
+    .lt-sort-icon {
+      width: 15px;
+    }
+
+    &.lt-group-column {
+      border: none !important;
+      padding-bottom: 10px;
+    }
+
+    .lt-column-resizer {
+      border-right: 1px dashed #ccc;
+      border-left: 1px dashed #ccc;
+    }
+  }
+
+  .lt-row {
+    height: 50px;
+
+    &.is-selected {
+      background-color: #DEDEDE !important;
+    }
+
+    &:not(.is-selected):hover {
+      background-color: #F5F4F4 !important;
+    }
+
+    &:last-of-type {
+      td {
+        border-bottom-width: 0;
+      }
+    }
+
+    &.lt-expanded-row, &.lt-no-data {
+      &:hover {
+        background-color: transparent !important;
+      }
+      td {
+        padding: 15px;
+      }
+    }
+
+    td {
+      border-color: $border-color;
+      border-width: 0;
+      border-bottom-width: 1px;
+      border-style: solid;
+      font-size: 13px;
+      padding: 0 10px;
+    }
+  }
+}
+

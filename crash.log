@@ -1,0 +1,15 @@
+PID 35988 received SIGSEGV for address: 0x0
+0   segfault-handler.node               0x0000000101ff1588 _ZL16segfault_handleriP9__siginfoPv + 280
+1   libsystem_platform.dylib            0x00007fffc7770bba _sigtramp + 26
+2   ???                                 0x0000000101e47250 0x0 + 4326715984
+3   binding.node                        0x0000000105106a0a _ZN4Sass4Util11isPrintableEPNS_7RulesetE17Sass_Output_Style + 192
+4   binding.node                        0x00000001050c9f07 _ZN4Sass6OutputclEPNS_7RulesetE + 73
+5   binding.node                        0x00000001050ba383 _ZN4Sass7InspectclEPNS_5BlockE + 149
+6   binding.node                        0x000000010505f7d6 _ZN4Sass7Context6renderEPNS_5BlockE + 50
+7   binding.node                        0x00000001050fca7d sass_compiler_execute + 107
+8   binding.node                        0x00000001050fc697 _Z20sass_compile_contextP12Sass_ContextPN4Sass7ContextE + 34
+9   node                                0x0000000100912532 worker + 90
+10  node                                0x000000010091e73c uv__thread_start + 25
+11  libsystem_pthread.dylib             0x00007fffc777aaab _pthread_body + 180
+12  libsystem_pthread.dylib             0x00007fffc777a9f7 _pthread_body + 0
+13  libsystem_pthread.dylib             0x00007fffc777a1fd thread_start + 13

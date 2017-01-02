@@ -1,7 +1,4 @@
-<div class="dashboard-container">
-  <h2 class="dashboard-title">Data</h2>
-
-  {{#light-table table as |t|}}
+{{#light-table table as |t|}}
 
     {{t.head}}
 
@@ -18,13 +15,11 @@
 
       {{#if table.isEmpty}}
         {{#body.no-data}}
-         Empty table
+          No users found.
         {{/body.no-data}}
       {{/if}}
     {{/t.body}}
 
+    {{t.foot}}
+
   {{/light-table}}
-
-  {{outlet}}
-</div>
-
