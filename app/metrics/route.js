@@ -5,7 +5,6 @@ export default Ember.Route.extend({
   model() {
     return request('/assets/mock-data/metrics.json')
     .then(data => {
-      console.log('data:', data);
       const numIssues = Math.floor(Math.random() * 10);
 
       return {
@@ -16,7 +15,6 @@ export default Ember.Route.extend({
   },
 
   _dataSort(a, b) {
-    console.log('a:', a);
     return a.time.getTime() - b.time.getTime();
   },
 
