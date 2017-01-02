@@ -20,7 +20,7 @@ export default Ember.Route.extend({
           {
             label: 'Closed Timestamp',
             valuePath: 'closedTimestamp',
-            width: '150px'
+            width: '75px'
           },
           {
             label: 'Customer Email',
@@ -30,7 +30,7 @@ export default Ember.Route.extend({
           {
             label: 'Customer Name',
             valuePath: 'customerName',
-            width: '150px'
+            width: '100px'
           },
           {
             label: 'Description',
@@ -40,17 +40,17 @@ export default Ember.Route.extend({
           {
             label: 'Employee Name',
             valuePath: 'employeeName',
-            width: '150px'
+            width: '100px'
           },
           {
             label: 'isOpen',
             valuePath: 'isOpen',
-            width: '150px'
+            width: '50px'
           },
           {
             label: 'Submit Timestamp',
             valuePath: 'submitTimestamp',
-            width: '150px'
+            width: '75px'
           }
         ];
       }),
