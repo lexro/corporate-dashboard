@@ -1,25 +1,22 @@
 {{#light-table table as |t|}}
 
-    {{t.head}}
+  {{t.head
+    onColumnClick=(action 'onColumnClick')
+    iconAscending='fa fa-sort-asc'
+    iconDescending='fa fa-sort-desc'}}
 
-    {{#t.body as |body|}}
-      {{#body.expanded-row as |row|}}
-        Hello <b>{{row.firstName}}</b>
-      {{/body.expanded-row}}
+  {{#t.body as |body|}}
+    {{#if isLoading}}
+      {{#body.loader}}
+        Loading...
+      {{/body.loader}}
+    {{/if}}
 
-      {{#if isLoading}}
-        {{#body.loader}}
-          Loading...
-        {{/body.loader}}
-      {{/if}}
+    {{#if table.isEmpty}}
+      {{#body.no-data}}
+       Empty table
+      {{/body.no-data}}
+    {{/if}}
+  {{/t.body}}
 
-      {{#if table.isEmpty}}
-        {{#body.no-data}}
-          No users found.
-        {{/body.no-data}}
-      {{/if}}
-    {{/t.body}}
-
-    {{t.foot}}
-
-  {{/light-table}}
+{{/light-table}}
