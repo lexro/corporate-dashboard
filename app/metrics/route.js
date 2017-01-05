@@ -49,7 +49,7 @@ export default Ember.Route.extend({
           });
         }
 
-        barData.sort(this._dataSort);
+        // barData.sort(this._dataSort);
 
         return Ember.A(barData);
       }),
@@ -69,14 +69,10 @@ export default Ember.Route.extend({
           });
         }
 
-        lineData.sort(this._dataSort);
+        // lineData.sort(this._dataSort);
 
         return Ember.A(lineData);
-      }),
-
-      _dataSort(a, b) {
-        return a.time.getTime() - b.time.getTime();
-      }
+      })
     });
   },
 

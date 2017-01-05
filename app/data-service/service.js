@@ -42,16 +42,39 @@ export default Ember.Service.extend({
   fetchMetricData() {
     return request('/assets/mock-data/metrics.json')
       .then((data) => {
-        const randomIndex = Math.floor(Math.random() * data.length);
         const numIssues = Math.floor(Math.random() * 10);
+        const pastDays = this.get('pastDays') || [];
+        let currentDay;
 
-        data.unshift(data[randomIndex]);
+        if (!pastDays || !pastDays.length) {
+          currentDay = new Date(data[data.length - 1].date);
+        } else {
+          currentDay = pastDays[pastDays.length - 1].date;
+        }
+
+        const nextDay = new Date();
+        nextDay.setDate(currentDay.getDate() + 1);
+        const newDay = {
+          date: nextDay,
+          customers: Math.floor(parseInt(data[data.length - 1].customers) * (1 - Math.random() * .1)),
+          issues: Math.floor(parseInt(data[data.length - 1].issues) * (1 - Math.random() * .1))
+        };
+
+        // data updates
+        pastDays.push(newDay);
+        data = data.concat(pastDays);
+
+        this.set('pastDays', pastDays);
 
         return {
-          data: data,
+          data: data.sort(this._dataSort),
           numIssues: numIssues
         };
       });
+  },
+
+  _dataSort(a, b) {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
   },
 
   // borrowed from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
