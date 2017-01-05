@@ -1,52 +1,88 @@
 import Ember from 'ember';
-import request from 'ember-ajax/request';
 
 export default Ember.Route.extend({
-  model() {
-    return request('/assets/mock-data/metrics.json')
-    .then(data => {
-      const numIssues = Math.floor(Math.random() * 10);
+  dataService: Ember.inject.service(),
 
-      return {
-        data: data,
-        numIssues: numIssues
-      };
-    });
+  pollInterval: 3000,
+
+  pollFunc: null,
+
+  model() {
+    return this.get('dataService').fetchMetricData();
   },
 
-  _dataSort(a, b) {
-    return a.time.getTime() - b.time.getTime();
+  // query the "api" with new data again
+  afterModel() {
+    let _this = this;
+
+    Ember.run.once(function () {
+      _this.pollFunc = setInterval(function () {
+        _this.model()
+          .then((model) => {
+            _this.set('context', model);
+            _this.controller.set('model', _this.get('context'));
+          });
+      }, _this.pollInterval);
+    });
   },
 
   setupController(controller, model) {
-    let barData = [];
-    let lineData = [];
-    const data = model.data;
-
-    for(let i = 0; i < data.length; i++) {
-      const item = data[i];
-      const date = new Date(item.date);
-
-      barData.push({
-        time: date,
-        value: parseInt(item.issues, 10) || 1,
-        label: 'Number of Issues'
-      });
-
-      lineData.push({
-        time: date,
-        value: parseInt(item.customers, 10) || 1,
-        label: 'Number of Paying Customers'
-      });
-    }
-
-    lineData.sort(this._dataSort);
-    barData.sort(this._dataSort);
-
     controller.setProperties({
-      numIssues: model.numIssues,
-      barData: Ember.A(barData),
-      lineData: Ember.A(lineData)
+      model: model,
+
+      numIssues: Ember.computed('model.numIssues', function () {
+        return this.get('model.numIssues') || 0;
+      }),
+
+      barData: Ember.computed('model.data', function () {
+        let barData = [];
+        const data = this.get('model.data');
+
+        for(let i = 0; i < data.length; i++) {
+          const item = data[i];
+          const date = new Date(item.date);
+
+          barData.push({
+            time: date,
+            value: parseInt(item.issues, 10) || 1,
+            label: 'Number of Issues'
+          });
+        }
+
+        barData.sort(this._dataSort);
+
+        return Ember.A(barData);
+      }),
+
+      lineData: Ember.computed('model.data', function () {
+        let lineData = [];
+        const data = this.get('model.data');
+
+        for(let i = 0; i < data.length; i++) {
+          const item = data[i];
+          const date = new Date(item.date);
+
+          lineData.push({
+            time: date,
+            value: parseInt(item.customers, 10) || 1,
+            label: 'Number of Paying Customers'
+          });
+        }
+
+        lineData.sort(this._dataSort);
+
+        return Ember.A(lineData);
+      }),
+
+      _dataSort(a, b) {
+        return a.time.getTime() - b.time.getTime();
+      }
     });
+  },
+
+  actions: {
+    willTransition() {
+      clearInterval(this.pollFunc);
+    }
   }
 });
