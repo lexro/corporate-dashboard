@@ -5,10 +5,12 @@ export default Ember.Component.extend({
  init() {
     this._super(...arguments);
 
-    let table = new Table(this.get('columns'), this.get('model'), { enableSync: true });
+    let table = new Table(this.get('columns'), this.get('model'));
     this.set('table', table);
   },
+
   model: null,
+
   columns: Ember.computed(function() {
     return [
       {
@@ -50,8 +52,19 @@ export default Ember.Component.extend({
   }),
 
   displayedRows: Ember.observer('model', 'sort', 'filter', function() {
-    const model = this.get('model');
+    let model = this.get('model');
     const sort = this.get('sort');
+    const filter = this.get('filter');
+
+    if (filter) {
+      model = model.filter((item) =>{
+        for(let i in filter) {
+          if (item[i] === filter[i]) {
+            return true;
+          }
+        }
+      });
+    }
 
     if (sort) {
       model.sort((a, b) => {
@@ -82,6 +95,14 @@ export default Ember.Component.extend({
     table.setRows(model);
   }),
 
+  employeeNames: Ember.computed('model', function () {
+    const model = this.get('model') || [];
+
+    return model.map((item) => {
+      return item.employeeName;
+    });
+  }),
+
   sort: null,
 
   filter: null,
@@ -94,6 +115,30 @@ export default Ember.Component.extend({
           isAscending: column.ascending
         });
       }
+    },
+
+    filterByStatus(value) {
+      if (value) {
+        const filter = this.get('filter') || {};
+        filter['isOpen'] = value === 'open';
+        this.set('filter', Object.create(filter));
+      } else {
+        this.set('filter', undefined);
+      }
+    },
+
+    filterByEmployee(value) {
+      if (value) {
+        const filter = this.get('filter') || {};
+        filter['employeeName'] = value;
+        this.set('filter', Object.create(filter));
+      } else {
+        this.set('filter', undefined);
+      }
+    },
+
+    clearAllFilters() {
+      this.set('filter', undefined);
     }
   }
 });

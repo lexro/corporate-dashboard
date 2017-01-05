@@ -1,3 +1,21 @@
+<div class="table-filter">
+  <select class="table-filter__select" onchange={{action "filterByEmployee" value="target.value"}}>
+    <option value="" selected>Employee Filter</option>
+    {{#each employeeNames as |name|}}
+      <option value={{name}}>{{name}}</option>
+    {{/each}}
+  </select>
+
+  <select class="table-filter__select" onchange={{action "filterByStatus" value="target.value"}}>
+    <option value="" selected>Status Filter</option>
+    <option value="open">Open</option>
+    <option value="closed">Closed</option>
+  </select>
+  <div class="table-filter__clear-button" {{action "clearAllFilters"}}>
+    Clear All Filters
+  </div>
+</div>
+
 {{#light-table table as |t|}}
 
   {{t.head
