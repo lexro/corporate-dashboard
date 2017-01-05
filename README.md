@@ -1,7 +1,6 @@
 # corporate-dashboard
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Mock Corporate dashboard using Ember.js.
 
 ## Prerequisites
 
@@ -15,15 +14,20 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/lexro/corporatedashboard.git` this repository
 * `cd corporate-dashboard`
 * `npm install`
 * `bower install`
 
 ## Running / Development
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+For serving with unminified files (development mode):
+
+ember serve
+For serving with minified files(check dist/assets)
+
+ember serve --prod
+Visit the app at http://localhost:4200.
 
 ### Code Generators
 
@@ -36,8 +40,12 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Building
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+Regular development build with unminified files:
+
+ember build (development)
+To build with minification (you can check dist/assets for the minified files)
+
+ember build --environment production (production)
 
 ### Deploying
 
