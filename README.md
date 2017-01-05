@@ -22,12 +22,10 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 For serving with unminified files (development mode):
-
-ember serve
+  * `ember serve`
+  
 For serving with minified files(check dist/assets)
-
-ember serve --prod
-Visit the app at http://localhost:4200.
+  * `ember serve --prod`
 
 ### Code Generators
 
@@ -41,11 +39,10 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Building
 
 Regular development build with unminified files:
-
-ember build (development)
+  * `ember build` (development)
+  
 To build with minification (you can check dist/assets for the minified files)
-
-ember build --environment production (production)
+  * `ember build --environment production` (production)
 
 ### Deploying
 
