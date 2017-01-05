@@ -45,6 +45,7 @@ export default Ember.Service.extend({
         const numIssues = Math.floor(Math.random() * 10);
         const pastDays = this.get('pastDays') || [];
         let currentDay;
+        data.sort(this._dataSort);
 
         if (!pastDays || !pastDays.length) {
           currentDay = new Date(data[data.length - 1].date);
@@ -52,12 +53,11 @@ export default Ember.Service.extend({
           currentDay = pastDays[pastDays.length - 1].date;
         }
 
-        const nextDay = new Date();
-        nextDay.setDate(currentDay.getDate() + 1);
+        currentDay.setDate(currentDay.getDate() + 5); //moving 5 days in the future
         const newDay = {
-          date: nextDay,
-          customers: Math.floor(parseInt(data[data.length - 1].customers) * (1 - Math.random() * .1)),
-          issues: Math.floor(parseInt(data[data.length - 1].issues) * (1 - Math.random() * .1))
+          date: new Date(currentDay),
+          customers: Math.floor(parseInt(data[data.length - 1].customers) * Math.random()),
+          issues: Math.floor(parseInt(data[data.length - 1].issues) * Math.random())
         };
 
         // data updates
@@ -67,7 +67,7 @@ export default Ember.Service.extend({
         this.set('pastDays', pastDays);
 
         return {
-          data: data.sort(this._dataSort),
+          data: data,
           numIssues: numIssues
         };
       });

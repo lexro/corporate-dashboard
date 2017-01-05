@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   dataService: Ember.inject.service(),
 
-  pollInterval: 3000,
+  pollInterval: 1500,
 
   pollFunc: null,
 
