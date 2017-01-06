@@ -71,7 +71,7 @@ export default Ember.Component.extend({
         const valueA = a[sort.valuePath];
         const valueB = b[sort.valuePath];
 
-        if (sort.valuePath === 'submitTimestamp') {
+        if (sort.valuePath === 'submitTimestamp' || sort.valuePath === 'closedTimestamp') {
           console.log('sort?');
           const timeA = new Date(valueA).getTime() || 0;
           const timeB = new Date(valueB).getTime() || 0;
