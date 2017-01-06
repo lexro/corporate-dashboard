@@ -50,6 +50,7 @@ Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
+* [Mockaroo](https://www.mockaroo.com/) for data mocking
 * [ember.js](http://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)
 * Development Browser Extensions
