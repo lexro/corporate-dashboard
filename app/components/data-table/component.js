@@ -14,9 +14,9 @@ export default Ember.Component.extend({
   columns: Ember.computed(function() {
     return [
       {
-        label: 'Closed Timestamp',
-        valuePath: 'closedTimestamp',
-        width: '75px'
+        label: 'Submit Timestamp',
+        valuePath: 'submitTimestamp',
+        width: '170px'
       },
       {
         label: 'Customer Email',
@@ -44,9 +44,9 @@ export default Ember.Component.extend({
         width: '50px'
       },
       {
-        label: 'Submit Timestamp',
-        valuePath: 'submitTimestamp',
-        width: '75px'
+        label: 'Closed Timestamp',
+        valuePath: 'closedTimestamp',
+        width: '170px'
       }
     ];
   }),
@@ -70,6 +70,18 @@ export default Ember.Component.extend({
       model.sort((a, b) => {
         const valueA = a[sort.valuePath];
         const valueB = b[sort.valuePath];
+
+        if (sort.valuePath === 'submitTimestamp') {
+          console.log('sort?');
+          const timeA = new Date(valueA).getTime() || 0;
+          const timeB = new Date(valueB).getTime() || 0;
+
+          if (sort.isAscending) {
+            return timeA - timeB;
+          }
+
+          return timeB - timeA;
+        }
 
         if (sort.isAscending) {
           if (valueA < valueB) {

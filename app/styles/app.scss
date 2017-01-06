@@ -122,10 +122,17 @@ $arrowSize: 8px;
   }
 }
 
+.sort-text {
+  margin-top: 30px;
+  font-size: 20px
+}
+
 // table styles borrowed from https://github.com/offirgolan/ember-light-table/blob/master/tests/dummy/app/styles/table.less
 .ember-light-table {
+  width: unset;
   margin: 0 auto;
   border-collapse: collapse;
+  overflow: auto;
 
   thead .lt-column {
     border-bottom: 1px solid $border-color;
