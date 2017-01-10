@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone https://github.com/lexlacson/corporatedashboard.git` this repository
+* `git clone this repository`
 * `cd corporate-dashboard`
 * `npm install`
 * `bower install`
